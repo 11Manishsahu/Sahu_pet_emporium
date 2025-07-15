@@ -214,57 +214,7 @@
 
   function closeOrderStatus() {
     document.getElementById('order-status').style.display = 'none';
-  }
-</script>
-
-    let cart = [];
-
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      document.getElementById('cart-count').innerText = cart.length;
-      alert(name + ' added to cart!');
-    }
-
-    function showCart() {
-      let items = '';
-      let total = 0;
-      cart.forEach(item => {
-        items += `<li>${item.name} - ₹${item.price}</li>`;
-        total += item.price;
-      });
-      document.getElementById('cart-items').innerHTML = items;
-      document.getElementById('cart-total').innerText = total;
-      document.getElementById('cart').style.display = 'block';
-    }
-
-    function hideCart() {
-      document.getElementById('cart').style.display = 'none';
-    }
-
-    function checkout() {
-      let total = 0;
-      cart.forEach(item => { total += item.price; });
-      if (total === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-
-      var options = {
-        "key": "YOUR_RAZORPAY_KEY_ID",
-        "amount": total * 100, // Convert to paise
-        "currency": "INR",
-        "name": "Sahu Pet Emporium",
-        "description": "Order Payment",
-        "handler": function (response){
-          alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
-        },
-        "theme": {
-          "color": "#111"
-        }
-      };
-      var rzp1 = new Razorpay(options);
-      rzp1.open();
-    }
+  }
   </script>
 
 </body>
