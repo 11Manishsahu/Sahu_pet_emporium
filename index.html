@@ -124,17 +124,99 @@
     <button onclick="hideCart()">Close</button>
   </div>
 
-  <footer>
-  <p>© 2025 Sahu Pet Emporium. All rights reserved.</p>
-  <div class="footer-buttons">
-    <button onclick="showShippingDetails()">Shipping Details</button>
-    <button onclick="checkOrderStatus()">Order Check Status</button>
-    <button onclick="customer support">Customer Support</button>
-  </div>
+<footer>
+  <p>© 2025 Sahu Pet Emporium. All rights reserved.</p>
+  <div class="footer-buttons">
+    <button onclick="showShippingDetails()">Shipping Details</button>
+    <button onclick="checkOrderStatus()">Order Check Status</button>
+    <a href="mailto:support@sahupetemporium.com">
+      <button>Customer Support</button>
+    </a>
+  </div>
 </footer>
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script>
+<!-- Shipping Details Modal -->
+<div id="shipping-details" class="cart" style="display:none;">
+  <h2>Shipping Details</h2>
+  <p>We offer standard shipping across India. Orders are processed within 2-3 business days and delivered within 5-7 days.</p>
+  <button onclick="closeShippingDetails()">Close</button>
+</div>
+
+<!-- Order Status Modal -->
+<div id="order-status" class="cart" style="display:none;">
+  <h2>Check Order Status</h2>
+  <p>Please contact us at <a href="mailto:support@sahupetemporium.com">support@sahupetemporium.com</a> with your order ID to check your order status.</p>
+  <button onclick="closeOrderStatus()">Close</button>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  let cart = [];
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    document.getElementById('cart-count').innerText = cart.length;
+    alert(name + ' added to cart!');
+  }
+
+  function showCart() {
+    let items = '';
+    let total = 0;
+    cart.forEach(item => {
+      items += `<li>${item.name} - ₹${item.price}</li>`;
+      total += item.price;
+    });
+    document.getElementById('cart-items').innerHTML = items;
+    document.getElementById('cart-total').innerText = total;
+    document.getElementById('cart').style.display = 'block';
+  }
+
+  function hideCart() {
+    document.getElementById('cart').style.display = 'none';
+  }
+
+  function checkout() {
+    let total = 0;
+    cart.forEach(item => { total += item.price; });
+    if (total === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    var options = {
+      "key": "YOUR_RAZORPAY_KEY_ID",
+      "amount": total * 100, // Convert to paise
+      "currency": "INR",
+      "name": "Sahu Pet Emporium",
+      "description": "Order Payment",
+      "handler": function (response){
+        alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+      },
+      "theme": {
+        "color": "#111"
+      }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  }
+
+  function showShippingDetails() {
+    document.getElementById('shipping-details').style.display = 'block';
+  }
+
+  function closeShippingDetails() {
+    document.getElementById('shipping-details').style.display = 'none';
+  }
+
+  function checkOrderStatus() {
+    document.getElementById('order-status').style.display = 'block';
+  }
+
+  function closeOrderStatus() {
+    document.getElementById('order-status').style.display = 'none';
+  }
+</script>
+
     let cart = [];
 
     function addToCart(name, price) {
