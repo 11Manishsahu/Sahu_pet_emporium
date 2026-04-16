@@ -66,119 +66,52 @@
 
     .nav-links {
       display: flex;
+      align-items: center;
     }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517420704952-d9f39e95b97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-      color: #fff;
-      padding: 8rem 2rem;
-      text-align: center;
-      position: relative;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .hero h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-    }
-
-    .hero button {
-      background: #f6ad55;
-      color: #1a202c;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .hero button:hover {
-      background: #ed8936;
-      transform: scale(1.05);
-    }
-
-    /* About Us Section */
-    .about {
-      background: linear-gradient(rgba(255,247,237,0.9), rgba(255,247,237,0.9)), url('https://images.unsplash.com/photo-1558788353-f76d92427f16?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-      padding: 4rem 2rem;
-      text-align: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .about h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #2d3748;
-      margin-bottom: 1.5rem;
-    }
-
-    .about p {
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: 0 auto 1rem;
-    }
-
-    /* Contact Us Section */
-    .contact {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: #f8fafc;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .contact h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #2d3748;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact p {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    .contact a {
-      color: #2b6cb0;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .contact a:hover {
-      color: #f6ad55;
-    }
-
-    .contact .call-btn {
-      display: inline-block;
+    /* Floating Cart Button */
+    .floating-cart {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
       background: #2b6cb0;
-      color: #fff;
-      padding: 0.8rem 2rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-      transition: background 0.3s ease, transform 0.3s ease;
+      color: white;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      box-shadow: 0 6px 20px rgba(43, 108, 176, 0.4);
+      z-index: 2000;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .contact .call-btn:hover {
+    .floating-cart:hover {
       background: #f6ad55;
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
-    /* Products Section */
+    .floating-cart .badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #c53030;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+    }
+
+    /* Products */
     .products {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -246,16 +179,75 @@
       font-weight: 600;
     }
 
+    /* Doghouse Image Slider */
+    .product-image-slider {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .product-image-slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .product-image-slider img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      width: 35px;
+      height: 35px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+    }
+
+    .slider-btn.prev { left: 10px; }
+    .slider-btn.next { right: 10px; }
+
+    /* Doghouse Details */
+    .product-details {
+      color: #1a202c;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      text-align: left;
+      padding: 0 1rem 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-details ul {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+      margin: 0.4rem 0;
+    }
+
+    .product-details li {
+      margin-bottom: 0.25rem;
+    }
+
     /* Cart Modal */
     .cart-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
-      z-index: 1000;
+      z-index: 3000;
       align-items: center;
       justify-content: flex-end;
     }
@@ -263,84 +255,54 @@
     .cart-box {
       background: #fff;
       width: 100%;
-      max-width: 450px;
+      max-width: 480px;
       height: 100%;
       padding: 2rem;
-      border-radius: 0;
+      overflow-y: auto;
       position: relative;
       animation: slideInRight 0.4s ease;
     }
 
     @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
     }
 
-    .cart-box h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: #2d3748;
-      margin-bottom: 1.5rem;
-    }
-
-    .cart-box ul {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 1.5rem;
-    }
-
-    .cart-box li {
-      font-size: 1rem;
-      padding: 0.7rem 0;
-      border-bottom: 1px solid #edf2f7;
+    .cart-item {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #edf2f7;
     }
 
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #2d3748;
-      transition: color 0.3s ease;
+    .cart-item-info {
+      flex: 1;
     }
 
-    .close-btn:hover {
-      color: #c53030;
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 10px;
     }
 
-    input {
-      width: 100%;
-      padding: 0.9rem;
-      margin: 0.7rem 0;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #f6ad55;
-      box-shadow: 0 0 6px rgba(246, 173, 85, 0.5);
-    }
-
-    .cart-box button {
-      background: #2b6cb0;
-      color: #fff;
-      border: none;
-      padding: 1rem;
-      cursor: pointer;
-      border-radius: 8px;
+    .quantity-controls button {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #cbd5e0;
+      background: white;
+      border-radius: 6px;
       font-size: 1.1rem;
-      width: 100%;
-      transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
     }
 
-    .cart-box button:hover {
-      background: #f6ad55;
-      transform: scale(1.02);
+    .remove-btn {
+      color: #c53030;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
     }
 
     /* Footer */
@@ -350,12 +312,6 @@
       text-align: center;
       padding: 3rem 2rem;
       margin-top: 3rem;
-    }
-
-    footer p {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      margin-bottom: 1.5rem;
     }
 
     .social-media {
@@ -374,7 +330,7 @@
       justify-content: center;
       background: #2d3748;
       border-radius: 50%;
-      transition: background 0.3s ease, transform 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .social-media a:hover {
@@ -382,56 +338,12 @@
       transform: scale(1.1);
     }
 
-    /* Responsive Design */
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero, .about, .contact {
-        padding: 3rem 1.5rem;
-        min-height: 400px;
-      }
-      .hero h2, .about h2, .contact h2 {
-        font-size: 2rem;
-      }
-      .hero p, .about p, .contact p {
-        font-size: 1rem;
-      }
-      .products {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        padding: 2rem 1rem;
-      }
-      .product-card img {
-        height: 180px;
-      }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #1a202c;
-        width: 200px;
-        padding: 1rem;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: block;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
-      .cart-box {
-        width: 100%;
-        max-width: none;
-      }
-      .social-media a {
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
-      }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; right: 0; background: #1a202c; width: 200px; padding: 1rem; }
+      .nav-links.active { display: flex; }
+      .hamburger { display: block; }
+      .product-card img, .product-image-slider { height: 180px; }
     }
   </style>
 </head>
@@ -441,10 +353,10 @@
     <nav>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
       <div class="nav-links">
-        <a href="#home" aria-label="Home">Home</a>
-        <a href="#about" aria-label="About">About</a>
-        <a href="#contact" aria-label="Contact">Contact</a>
-        <a href="#" onclick="showCart()" aria-label="View Cart">🛒 Cart (<span id="cart-count">0</span>)</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#" onclick="showCart()">🛒 Cart (<span id="header-cart-count">0</span>)</a>
       </div>
     </nav>
   </header>
@@ -457,12 +369,13 @@
 
   <section class="about" id="about" data-aos="fade-up">
     <h2>About Sahu Pet Emporium</h2>
-    <p>At Sahu Pet Emporium, we believe pets are family. Founded with a passion for enhancing the lives of pets and their owners, we offer premium, stylish accessories designed to bring joy and comfort. From cozy pet houses to elegant collars, our products are crafted with love and quality in mind.</p>
-    <p>Our mission is to provide pet owners with unique, durable, and fashionable items that celebrate the bond between you and your furry companions. Join us in making every moment with your pet special!</p>
+    <p>At Sahu Pet Emporium, we believe pets are family. Founded with a passion for enhancing the lives of pets and their owners, we offer premium, stylish accessories designed to bring joy and comfort.</p>
+    <p>Our mission is to provide pet owners with unique, durable, and fashionable items that celebrate the bond between you and your furry companions.</p>
   </section>
 
   <section class="products" id="products" data-aos="fade-up" data-aos-delay="100">
-    <div class="product-card" data-tilt data-tilt-max="10">
+    <!-- Normal Products - Single Image (Like your original file) -->
+    <div class="product-card">
       <img src="house.jpg" alt="Matte House for Dogs">
       <span class="badge">New</span>
       <h3>Matte House for Dogs</h3>
@@ -470,7 +383,7 @@
       <button onclick="addToCart('Matte House for Dogs', 1300)">Add to Cart</button>
     </div>
 
-    <div class="product-card" data-tilt data-tilt-max="10">
+    <div class="product-card">
       <img src="shoe.jpg" alt="PawsMo Dog Shoes">
       <span class="badge">Popular</span>
       <h3>PawsMo Dog Shoes</h3>
@@ -478,76 +391,92 @@
       <button onclick="addToCart('PawsMo Dog Shoes', 1500)">Add to Cart</button>
     </div>
 
-    <div class="product-card" data-tilt data-tilt-max="10">
+    <div class="product-card">
       <img src="patta.jpg" alt="Velvet Bling Collar">
       <span class="badge">Sale</span>
       <h3>Velvet Bling Collar</h3>
       <p>₹1200</p>
       <button onclick="addToCart('Velvet Bling Collar', 1200)">Add to Cart</button>
     </div> 
-    <div class="product-card" data-tilt data-tilt-max="10">
-  <img src="oil.jpg" alt="Best Oil for Pets">
-  <span class="badge">New</span>
-  <h3>Oil for pets</h3>
-  <p>₹1000</p>
-  <button onclick="addToCart('best oil for pets', 1000)">Add to Cart</button>
+
+    <div class="product-card">
+      <img src="oil.jpg" alt="Best Oil for Pets">
+      <span class="badge">New</span>
+      <h3>Oil for pets</h3>
+      <p>₹1000</p>
+      <button onclick="addToCart('best oil for pets', 1000)">Add to Cart</button>
+    </div>
+
+    <!-- Doghouse with Multiple Images -->
+    <div class="product-card">
+      <div class="product-image-slider">
+        <img src="house.jpg" alt="Square Doghouse - View 1" class="active">
+        <img src="house2.jpg" alt="Square Doghouse - View 2">
+        <img src="house3.jpg" alt="Square Doghouse - View 3">
+        <img src="house4.jpg" alt="Square Doghouse - View 4">
+        <button class="slider-btn prev" onclick="prevSlide(this)">‹</button>
+        <button class="slider-btn next" onclick="nextSlide(this)">›</button>
+      </div>
+      <span class="badge">New</span>
+      <h3>QUAPAS! X-LARGE INDOOR DOGHOUSE WOOD</h3>
+      <div class="product-details">
+        <ul>
+          <li>Suitable for Large dogs up to 18-40kg</li>
+          <li><strong>Overall Dimensions:</strong> 86H × 118.5L × 80.5W cm</li>
+          <li><strong>Inside:</strong> 77.6H × 115L × 74.5W cm</li>
+          <li><strong>Door:</strong> 68.9H × 48.4W cm</li>
+          <li><strong>Cushion:</strong> 5H × 114.8L × 74W cm</li>
+          <li><strong>Bar Spacing:</strong> 4.1 cm</li>
+          <li><strong>Maximum weight capacity:</strong> Inside: 68kg | Top: 80kg</li>
+        </ul>
+      </div>
+      <p style="color: #c53030; font-size: 1.2rem; font-weight: 600; margin: 0.5rem 0;">₹12000</p>
+      <button onclick="addToCart('Square Doghouse', 12000)">Add to Cart</button>
     </div>
   </section>
-  
-    <div class="product-card" data-tilt data-tilt-max="10">
-  <img src="house.jpg" alt="Square Doghouse">
-  <span class="badge">New</span>
-  <h3>QUAPAS! X-LARGE INDOOR DOGHOUSE WOOD</h3>
-      
-      <p> Suitable for Large dogs up to 18-40kg<p></p>
-      <p>Overall Dimensions: 86H x 118.5L x 80.5Wcm</p>
-<p>Inside: 77.6H x 115L x 74.5Wcm</p>
-<p>Door: 68.9H x 48.4Wcm</p>
-<p>Cushion: 5H x 114.8L x 74Wcm</p>
-<p>Bar Spacing: 4.1cm</p>
-<p>Maximum weight capacity: Inside: 68kg</p>
-<p>Top: 80kg</p>
-  
-  <p>₹1000</p>
-  <button onclick="addToCart('Square Doghouse', 1200)">Add to Cart</button>
-    </div>
-</section>
-  
+
   <section class="contact" id="contact" data-aos="fade-up">
     <h2>Contact Us</h2>
     <p>Have questions or need help? Reach out to our friendly team!</p>
-    <p><strong>Call Us:</strong> <a href="tel:+91-8819048660" class="call-btn" aria-label="Call Sahu Pet Emporium">+91-9285247739</a></p>
-    <p><strong>Email:</strong> <a href="mailto:manishsahujiguna@gmail.com" aria-label="Email Sahu Pet Emporium">support@sahupetemporium.com</a></p>
+    <p><strong>Call Us:</strong> <a href="tel:+91-9285247739" class="call-btn">+91-9285247739</a></p>
+    <p><strong>Email:</strong> <a href="mailto:support@sahupetemporium.com">support@sahupetemporium.com</a></p>
     <p><strong>Address:</strong> SADAR BAZAR, GUNA, M.P., India</p>
   </section>
 
+  <!-- Floating Cart Button -->
+  <div class="floating-cart" onclick="showCart()">
+    🛒
+    <span class="badge" id="floating-cart-count">0</span>
+  </div>
+
+  <!-- Cart Modal -->
   <div id="cart-overlay" class="cart-overlay">
     <div class="cart-box">
-      <span class="close-btn" onclick="hideCart()" aria-label="Close Cart">❌</span>
+      <span class="close-btn" onclick="hideCart()">❌</span>
       <h2>Your Cart</h2>
-      <ul id="cart-items"></ul>
-      <p><strong>Total: ₹<span id="cart-total">0</span></strong></p>
+      <div id="cart-items"></div>
+      <p style="margin: 20px 0 10px; font-size: 1.2rem;"><strong>Total: ₹<span id="cart-total">0</span></strong></p>
 
       <h3>Shipping Details</h3>
-      <input type="text" id="customer-name" placeholder="Full Name" required aria-label="Full Name">
-      <input type="text" id="customer-address" placeholder="Full Address" required aria-label="Full Address">
-      <input type="email" id="customer-email" placeholder="Email" required aria-label="Email">
-      <input type="tel" id="customer-phone" placeholder="Phone Number" required aria-label="Phone Number">
-      <button onclick="checkout()">🛒 Buy Now</button>
+      <input type="text" id="customer-name" placeholder="Full Name" required>
+      <input type="text" id="customer-address" placeholder="Full Address" required>
+      <input type="email" id="customer-email" placeholder="Email" required>
+      <input type="tel" id="customer-phone" placeholder="Phone Number" required>
+      
+      <button onclick="checkout()">🛒 Proceed to Pay</button>
     </div>
   </div>
 
   <footer data-aos="fade-up">
     <p>© 2025 Sahu Pet Emporium. All rights reserved.</p>
     <div class="social-media">
-      <a href="https://www.instagram.com/manish_sahu2003" target="_blank" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.twitter.com/" target="_blank" aria-label="Follow us on Twitter"><i class="fab fa-x-twitter"></i></a>
-      <a href="https://www.facebook.com/" target="_blank" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/manish_sahu2003" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
     </div>
   </footer>
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script src="https://unpkg.com/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800 });
@@ -555,21 +484,66 @@
     let cart = [];
 
     function addToCart(name, price) {
-      cart.push({ name, price });
-      document.getElementById('cart-count').innerText = cart.length;
-      alert(`${name} added to cart!`);
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      updateCartCounts();
+    }
+
+    function updateCartCounts() {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('floating-cart-count').innerText = count;
+      document.getElementById('header-cart-count').innerText = count;
     }
 
     function showCart() {
-      let items = '';
-      let total = 0;
-      cart.forEach(item => {
-        items += `<li>${item.name} <span>₹${item.price}</span></li>`;
-        total += item.price;
-      });
-      document.getElementById('cart-items').innerHTML = items;
+      const container = document.getElementById('cart-items');
+      container.innerHTML = '';
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#718096; padding:40px 20px;">Your cart is empty</p>';
+      } else {
+        cart.forEach((item, index) => {
+          const subtotal = item.price * item.quantity;
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <div class="cart-item-info">
+              <strong>${item.name}</strong><br>
+              ₹${item.price} × ${item.quantity} = ₹${subtotal}
+            </div>
+            <div class="quantity-controls">
+              <button onclick="changeQuantity(${index}, -1)">–</button>
+              <span>${item.quantity}</span>
+              <button onclick="changeQuantity(${index}, 1)">+</button>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${index})">🗑</button>
+          `;
+          container.appendChild(div);
+        });
+      }
+
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       document.getElementById('cart-total').innerText = total;
       document.getElementById('cart-overlay').style.display = 'flex';
+    }
+
+    function changeQuantity(index, change) {
+      cart[index].quantity += change;
+      if (cart[index].quantity < 1) cart[index].quantity = 1;
+      showCart();
+      updateCartCounts();
+    }
+
+    function removeFromCart(index) {
+      if (confirm("Remove this item from cart?")) {
+        cart.splice(index, 1);
+        showCart();
+        updateCartCounts();
+      }
     }
 
     function hideCart() {
@@ -577,43 +551,33 @@
     }
 
     function checkout() {
-      let total = cart.reduce((sum, item) => sum + item.price, 0);
+      let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       if (total === 0) return alert("Your cart is empty!");
 
-      const name = document.getElementById("customer-name").value;
-      const address = document.getElementById("customer-address").value;
-      const email = document.getElementById("customer-email").value;
-      const phone = document.getElementById("customer-phone").value;
+      const name = document.getElementById("customer-name").value.trim();
+      const address = document.getElementById("customer-address").value.trim();
+      const email = document.getElementById("customer-email").value.trim();
+      const phone = document.getElementById("customer-phone").value.trim();
 
       if (!name || !address || !email || !phone) {
         return alert("Please fill all shipping details.");
       }
 
       const options = {
-        "key": "rzp_live_w3b9iK4uDEYuHe", // Replace with your Razorpay Key
+        "key": "rzp_live_w3b9iK4uDEYuHe",
         "amount": total * 100,
         "currency": "INR",
         "name": "Sahu Pet Emporium",
         "description": "Order Payment",
-        "prefill": {
-          "name": name,
-          "email": email,
-          "contact": phone
-        },
-        "notes": {
-          "address": address
-        },
+        "prefill": { "name": name, "email": email, "contact": phone },
+        "notes": { "address": address },
         "handler": function (response) {
           alert(`✅ Payment successful!\nPayment ID: ${response.razorpay_payment_id}`);
           cart = [];
-          document.getElementById('cart-count').innerText = '0';
-          document.getElementById('cart-items').innerHTML = '';
-          document.getElementById('cart-total').innerText = '0';
+          updateCartCounts();
           hideCart();
         },
-        "theme": {
-          "color": "#2b6cb0"
-        }
+        "theme": { "color": "#2b6cb0" }
       };
 
       const rzp = new Razorpay(options);
@@ -626,6 +590,25 @@
 
     function scrollToProducts() {
       document.querySelector('#products').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Image Slider for Doghouse only
+    function prevSlide(btn) {
+      const slider = btn.parentElement;
+      const images = slider.querySelectorAll('img');
+      let active = Array.from(images).findIndex(img => img.classList.contains('active'));
+      images[active].classList.remove('active');
+      active = (active - 1 + images.length) % images.length;
+      images[active].classList.add('active');
+    }
+
+    function nextSlide(btn) {
+      const slider = btn.parentElement;
+      const images = slider.querySelectorAll('img');
+      let active = Array.from(images).findIndex(img => img.classList.contains('active'));
+      images[active].classList.remove('active');
+      active = (active + 1) % images.length;
+      images[active].classList.add('active');
     }
   </script>
 </body>
