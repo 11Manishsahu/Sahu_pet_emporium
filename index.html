@@ -660,20 +660,30 @@
       }
 
       const options = {
-        "key": "rzp_live_w3b9iK4uDEYuHe",
+        "key": "rzp_live_w3b9iK4uDEYuHe", // Replace with your Razorpay Key
         "amount": total * 100,
         "currency": "INR",
         "name": "Sahu Pet Emporium",
         "description": "Order Payment",
-        "prefill": { "name": name, "email": email, "contact": phone },
-        "notes": { "address": address },
+        "prefill": {
+          "name": name,
+          "email": email,
+          "contact": phone
+        },
+        "notes": {
+          "address": address
+        },
         "handler": function (response) {
           alert(`✅ Payment successful!\nPayment ID: ${response.razorpay_payment_id}`);
           cart = [];
-          updateCartCount();
+          document.getElementById('cart-count').innerText = '0';
+          document.getElementById('cart-items').innerHTML = '';
+          document.getElementById('cart-total').innerText = '0';
           hideCart();
         },
-        "theme": { "color": "#2b6cb0" }
+        "theme": {
+          "color": "#2b6cb0"
+        }
       };
 
       const rzp = new Razorpay(options);
@@ -685,30 +695,8 @@
     }
 
     function scrollToProducts() {
-      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+      document.querySelector('#products').scrollIntoView({ behavior: 'smooth' });
     }
-
-    // Image Slider for Doghouse
-    function prevSlide(btn) {
-      const slider = btn.parentElement;
-      const images = slider.querySelectorAll('img');
-      let active = Array.from(images).findIndex(img => img.classList.contains('active'));
-      images[active].classList.remove('active');
-      active = (active - 1 + images.length) % images.length;
-      images[active].classList.add('active');
-    }
-
-    function nextSlide(btn) {
-      const slider = btn.parentElement;
-      const images = slider.querySelectorAll('img');
-      let active = Array.from(images).findIndex(img => img.classList.contains('active'));
-      images[active].classList.remove('active');
-      active = (active + 1) % images.length;
-      images[active].classList.add('active');
-    }
-
-    // Initial cart count
-    updateCartCount();
   </script>
 </body>
 </html>
